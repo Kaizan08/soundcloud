@@ -2,7 +2,8 @@
 <html>
 <head>
   <title>SoundCloud Music Search</title>
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="./styles.css">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/fetch/2.0.3/fetch.min.js">
 </head>
 <body>
   <div class="container">
@@ -13,14 +14,28 @@
       <audio class="music-player" controls="controls" src=""></audio>
     </section>
     <section class="search">
-      <form class="search-form" method="POST">
-        <input type="text" placeholder="Search for Artist" name="search" id="search" value="">
-        <input type="submit" id="submit" onclick="sendData()">
+      <form class="search-form" action="" onsubmit="sendData(); return false;" method="POST">
+        <input type="text" placeholder="Search for Artist" name="search_input" id="search_input" class="search_input">
+        <input type="submit" id="submit">
       </form>
     </section>
     <section class="results"></section>
   </div>
-  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <!--<script src="https://connect.soundcloud.com/sdk/sdk-3.1.2.js"></script>
+  <script>
+  SC.initialize({
+    client_id: 'YOUR_CLIENT_ID',
+    redirect_uri: 'http://example.com/callback'
+  });
+
+  // initiate auth popup
+  SC.connect().then(function() {
+    return SC.get('/me');
+  }).then(function(me) {
+    alert('Hello, ' + me.username);
+  });
+  </script>-->
+  <!--<script src="https://unpkg.com/axios/dist/axios.min.js"></script>-->
   <script src="main.js"></script>
 </body>
 </html>
