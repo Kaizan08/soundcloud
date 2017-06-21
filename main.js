@@ -10,13 +10,9 @@ var search_form = document.querySelector(".search_form");
 var results = document.querySelector(".results");
 var submit = document.querySelector("#submit");
 // 2. Create your `onSubmit` event for getting the user's search term
-//http://api.soundcloud.com/users/52955/tracks?client_id=095fe1dcd09eb3d0e1d3d89c76f5618f
-//var url = "http://api.soundcloud.com/tracks/";
 
 var client_id = "?client_id=8538a1744a7fdaa59981232897501e04";
 function sendData() {
-  // var removal = document.querySelector('music_prof');
-  // results.removeChild(removal);
   var url = "http://api.soundcloud.com/users/"
   var urltosearch = search.value;
   url += urltosearch +'/' + client_id ;
