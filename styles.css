@@ -31,9 +31,13 @@ header{
 .bottomresults{
     display: flex;
     flex-wrap: wrap;
+    text-align:center;
 }
 .music_prof{
   width: calc(100%/5);
+}
+.music_prof img{
+  width: 80%;
 }
 .results{
   margin: 3% 5%;
@@ -43,7 +47,7 @@ header{
   padding-left: 5px;
 }
 .search_input{
-  width: 100vh;
+  width: 105vh;
   height: 4vh;
   padding-left: 10px;
 

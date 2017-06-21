@@ -13,6 +13,7 @@ var submit = document.querySelector("#submit");
 
 var client_id = "?client_id=8538a1744a7fdaa59981232897501e04";
 function sendData() {
+  results.innerHTML = "";
   var url = "http://api.soundcloud.com/users/"
   var urltosearch = search.value;
   url += urltosearch +'/' + client_id ;
@@ -35,8 +36,13 @@ function pushToPage(data) {
   // automatically load first song after search completes
   // soundcontrol.src = data['data'][0]['stream_url'] + client_id;
   // soundcontrol.autoplay = true;
+  
+  // if (document.querySelector('.search_results')){
+  //   results.removeChild(document.querySelector('.bottomresults');
+  // }
   var h2element = document.createElement('h2');
   h2element.textContent = 'Search Results:';
+  h2element.classList.add('search_results');
   h2element.style.fontWeight = 'bold';
   results.appendChild(h2element);
   var bottomdiv = document.createElement('div');
@@ -52,14 +58,27 @@ function buildprofile(data, parent){
   var musicdiv = document.createElement('div');
   musicdiv.classList.add('music_prof');
   parent.appendChild(musicdiv);
+  // document.querySelector('music_prof').onclick = playmusic(data);
   var img = document.createElement('img');
-  img.src = data["artwork_url"];
+  img.onclick = playmusic(data);
   musicdiv.appendChild(img);
   var title = document.createElement('p');
   title.textContent = data["title"];
   musicdiv.appendChild(title);
   var band = document.createElement('p');
-  band.textContent = data["username"];
+  if (!data["username"]){
+    band.textContent = "No Username";
+  } 
+  else {
+    band.textContent = data["username"];
+  }
   musicdiv.appendChild(band);
 }
 // 5. Create a way to listen for a click that will play the song in the audio play
+ function playmusic(data){
+  console.log(data["stream_url"]);
+  var file = data["stream_url"]+client_id; 
+  console.log(file);
+  soundcontrol.src =file;
+  soundcontrol.autoplay = true;
+ }
