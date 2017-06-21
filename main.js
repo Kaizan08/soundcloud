@@ -33,13 +33,6 @@ function getTracks(userId){
 // 3. Create your `fetch` request that is called after a submission
 
 function pushToPage(data) {
-  // automatically load first song after search completes
-  // soundcontrol.src = data['data'][0]['stream_url'] + client_id;
-  // soundcontrol.autoplay = true;
-  
-  // if (document.querySelector('.search_results')){
-  //   results.removeChild(document.querySelector('.bottomresults');
-  // }
   var h2element = document.createElement('h2');
   h2element.textContent = 'Search Results:';
   h2element.classList.add('search_results');
@@ -58,9 +51,12 @@ function buildprofile(data, parent){
   var musicdiv = document.createElement('div');
   musicdiv.classList.add('music_prof');
   parent.appendChild(musicdiv);
-  // document.querySelector('music_prof').onclick = playmusic(data);
+  musicdiv.addEventListener('click', function(e){
+    soundcontrol.src = data["stream_url"]+client_id;
+    soundcontrol.autoplay = true;
+  });
   var img = document.createElement('img');
-  img.onclick = playmusic(data);
+  img.src = data["artwork_url"];
   musicdiv.appendChild(img);
   var title = document.createElement('p');
   title.textContent = data["title"];
@@ -75,10 +71,3 @@ function buildprofile(data, parent){
   musicdiv.appendChild(band);
 }
 // 5. Create a way to listen for a click that will play the song in the audio play
- function playmusic(data){
-  console.log(data["stream_url"]);
-  var file = data["stream_url"]+client_id; 
-  console.log(file);
-  soundcontrol.src =file;
-  soundcontrol.autoplay = true;
- }
